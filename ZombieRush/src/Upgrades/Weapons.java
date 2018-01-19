@@ -1,6 +1,6 @@
 package Upgrades;
 
-public class Weapons {
+public abstract class Weapons {
 	private int dmg;
 	private int price;
 	private boolean equipped;
