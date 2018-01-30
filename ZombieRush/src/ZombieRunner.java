@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,9 +18,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
  
 public class ZombieRunner extends Application {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
     	
-		/*StringBuilder sb=new StringBuilder();
+		StringBuilder sb=new StringBuilder();
 		System.out.println("High Score List");  	
     	String csvFile ="highscore.csv";
     	BufferedReader br = null;
@@ -34,8 +35,8 @@ public class ZombieRunner extends Application {
              System.out.println(board[0]+ "  "+board[1]);
             sb.append(board[0]+ ","+board[1]+"\n");
         }
-    	*/
-    	//PrintWriter pw=new PrintWriter(new File("highscore.csv"));
+    	
+    	PrintWriter pw=new PrintWriter(new File("highscore.csv"));
         launch(args);
     }
     
@@ -51,18 +52,19 @@ public class ZombieRunner extends Application {
     	
     	Text t1 = new Text("SAVE");
     	t1.setFont(Font.loadFont("file:WarWound.otf",40));
-    	
+    	t1.setFill(Color.RED);
     	t1.setTranslateY(50);
     	root.getChildren().add(t1); 
     	
     	Text t2 = new Text("LOAD");
     	t2.setFont(Font.loadFont("file:WarWound.otf",40));
+    	t2.setFill(Color.RED);
     	t2.setTranslateY(100);
     	root.getChildren().add(t2); 
 
     	Text t3 = new Text("HIGHSCORES");
-    	t3.setFont(Font.loadFont("fil"
-    			+ "e:WarWound.otf",40));
+    	t3.setFont(Font.loadFont("file:WarWound.otf",40));
+    	t3.setFill(Color.RED);
     	t3.setTranslateY(150);
     	root.getChildren().add(t3); 
     	
