@@ -11,4 +11,9 @@ public abstract class Weapons {
 		this.price = price;
 		this.equipped = equipped;
 	}
+	
+	public void setPrice(int price)
+	{
+		this.price = price;
+	}
 }
