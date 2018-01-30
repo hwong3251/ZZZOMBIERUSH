@@ -38,7 +38,7 @@ public class ZombieRunner extends Application {
     	//PrintWriter pw=new PrintWriter(new File("highscore.csv"));
         launch(args);
     }
-    
+    //
     @Override
     public void start(Stage primaryStage) {
     	StackPane root = new StackPane();
