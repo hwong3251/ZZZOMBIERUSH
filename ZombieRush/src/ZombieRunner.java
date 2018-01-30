@@ -35,7 +35,7 @@ public class ZombieRunner extends Application {
              System.out.println(board[0]+ "  "+board[1]);
             sb.append(board[0]+ ","+board[1]+"\n");
         }
-    	
+    	//
     	PrintWriter pw=new PrintWriter(new File("highscore.csv"));
         launch(args);
     }
