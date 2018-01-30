@@ -38,7 +38,7 @@ public class ZombieRunner extends Application {
     	//PrintWriter pw=new PrintWriter(new File("highscore.csv"));
         launch(args);
     }
-    //
+    
     @Override
     public void start(Stage primaryStage) {
     	StackPane root = new StackPane();
@@ -61,7 +61,8 @@ public class ZombieRunner extends Application {
     	root.getChildren().add(t2); 
 
     	Text t3 = new Text("HIGHSCORES");
-    	t3.setFont(Font.loadFont("file:WarWound.otf",40));
+    	t3.setFont(Font.loadFont("fil"
+    			+ "e:WarWound.otf",40));
     	t3.setTranslateY(150);
     	root.getChildren().add(t3); 
     	
