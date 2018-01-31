@@ -16,4 +16,8 @@ public abstract class Weapons {
 	{
 		this.price = price;
 	}
+	public void changeEquipped()
+	{
+		boolean equipped != equipped;
+	}
 }
