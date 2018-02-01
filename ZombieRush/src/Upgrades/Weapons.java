@@ -16,8 +16,19 @@ public abstract class Weapons {
 	{
 		this.price = price;
 	}
-	public void changeEquipped()
+	public void setDamage(int dmg)
 	{
-		boolean equipped != equipped;
+		this.dmg = dmg;
 	}
+	public boolean changeEquipped()
+	{
+		if(this.equipped = true)
+		{
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
 }
