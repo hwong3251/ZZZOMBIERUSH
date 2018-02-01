@@ -74,7 +74,7 @@ public class ZombieRunner extends Application {
     	btnshop.setTranslateY(180);
     	startpg.getChildren().add(btnshop); 
     	//end start
-
+    	//
     	//game pg
     	Player player = new Player(100,250,250,1,0,"uu");
     	
