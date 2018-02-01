@@ -14,6 +14,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -77,13 +78,9 @@ public class ZombieRunner extends Application {
     	//
     	//game pg
     	Player player = new Player(100,250,250,1,0,"uu");
-    	
-    	Rectangle rect = new Rectangle(10,50, Color.RED);
-    	rect.setY(100);
-    	System.out.println(rect.getY());
-        //rect.getTransforms().add(new Rotate(0)); 
-        game.getChildren().add(rect);
-        
+    	Pane next=new Pane();
+    	next.setPrefSize(500,500);
+
     	Circle c1 = new Circle(20);
     	c1.setFill(Color.BLACK);
     	game.getChildren().add(c1);
@@ -94,6 +91,11 @@ public class ZombieRunner extends Application {
     		public void handle(ActionEvent e) {
     			primaryStage.setScene(new Scene(game, 500,500));
     	        primaryStage.show();
+    	        Rectangle rect = new Rectangle(10,50, Color.RED);
+    	    	rect.setY(100);
+    	    	System.out.println(rect.getY());
+    	        //rect.getTransforms().add(new Rotate(0)); 
+    	        next.getChildren().add(rect);
     		}
     	});
     	// end button actions
