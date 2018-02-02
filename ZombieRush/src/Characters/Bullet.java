@@ -55,6 +55,7 @@ public class Bullet {
 	{
 	    this.h = h;
 	}
+	//move toward and forward the angle
 	public void moveForward(int speed) 
 	{
 	    x += Math.cos(a)*speed;
