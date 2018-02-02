@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 import Characters.Player;
 import javafx.application.Application;
@@ -23,8 +25,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
- 
+ //Yiren,Derek,leon,hoilam
 public class ZombieRunner extends Application {
+	private boolean playing=false;
     public static void main(String[] args) throws IOException {
     	
 		/*StringBuilder sb=new StringBuilder();
@@ -49,7 +52,9 @@ public class ZombieRunner extends Application {
     @Override
     public void start(Stage primaryStage) {
     	StackPane startpg = new StackPane();
-    	StackPane game= new StackPane();
+    	Pane game=new Pane();
+    	game.setPrefSize(500,500);
+    	
     	//start pg
     	Button btnstart = new Button("PLAY");
     	btnstart.setTranslateY(0);
@@ -78,28 +83,27 @@ public class ZombieRunner extends Application {
     	//
     	//game pg
     	Player player = new Player(100,250,250,1,0,"uu");
-    	Pane next=new Pane();
-    	next.setPrefSize(500,500);
-
-    	Circle c1 = new Circle(20);
+    	
+    	Rectangle rect = new Rectangle(10,50, Color.RED);
+        rect.setX(245);
+    	rect.setY(250);
+        rect.getTransforms().add(new Rotate(45,245,250)); 
+        game.getChildren().add(rect);
+        
+        Circle c1 = new Circle(250,250,20);
     	c1.setFill(Color.BLACK);
     	game.getChildren().add(c1);
     	//game end
     	
     	// button actions
     	btnstart.setOnAction(new EventHandler<ActionEvent>() {
-    		public void handle(ActionEvent e) {
-    			primaryStage.setScene(new Scene(game, 500,500));
+    		public void handle(ActionEvent e) {    	        
+    	        primaryStage.setScene(new Scene(game, 500,500));
     	        primaryStage.show();
-    	        Rectangle rect = new Rectangle(10,50, Color.RED);
-    	    	rect.setY(100);
-    	    	System.out.println(rect.getY());
-    	        //rect.getTransforms().add(new Rotate(0)); 
-    	        next.getChildren().add(rect);
+    	       
     		}
-    	});
     	// end button actions
-    	
+    	});
         primaryStage.setScene(new Scene(startpg, 500,500));
         primaryStage.show();
     }
