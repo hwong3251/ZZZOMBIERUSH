@@ -13,11 +13,14 @@ import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -25,10 +28,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
+import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
  //Yiren,Derek,leon,hoilam
 public class ZombieRunner extends Application {
+	
+	Scene SceneMenu, SceneShop, SceneGame, SceneSave, SceneLoad;
 	private boolean playing=false;
+	
     public static void main(String[] args) throws IOException {
     	
 		/*StringBuilder sb=new StringBuilder();
@@ -52,37 +59,44 @@ public class ZombieRunner extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-    	StackPane startpg = new StackPane();
-    	Pane game=new Pane();
-    	game.setPrefSize(500,500);
     	
-    	//start pg
+    	//****************SCENE MENU*****************************
+    	StackPane startpg = new StackPane();
+    	
     	Button btnstart = new Button("PLAY");
+    	btnstart.setOnAction(e->primaryStage.setScene(SceneGame));
     	btnstart.setTranslateY(0);
     	btnstart.setFont(Font.loadFont("file:WarWound.otf",40));
     	btnstart.setStyle("-fx-padding:5;");
-    	startpg.getChildren().add(btnstart);
     	
     	Button btnsave = new Button("SAVE");
+    	btnsave.setOnAction(e->primaryStage.setScene(SceneSave));
     	btnsave.setFont(Font.loadFont("file:WarWound.otf",40));
     	btnsave.setTranslateY(60);
     	btnsave.setStyle("-fx-padding:5;");
-    	startpg.getChildren().add(btnsave); 
     	
     	Button btnload = new Button("LOAD");
+    	btnload.setOnAction(e->primaryStage.setScene(SceneLoad));
     	btnload.setFont(Font.loadFont("file:WarWound.otf",40));
     	btnload.setStyle("-fx-padding:5;");
     	btnload.setTranslateY(120);
-    	startpg.getChildren().add(btnload); 
 
     	Button btnshop = new Button("SHOP");
+    	btnshop.setOnAction(e->primaryStage.setScene(SceneShop));
     	btnshop.setFont(Font.loadFont("file:WarWound.otf",40));
     	btnshop.setStyle("-fx-padding:5;");
     	btnshop.setTranslateY(180);
-    	startpg.getChildren().add(btnshop); 
-    	//end start
+    	
+    	startpg.getChildren().addAll(btnstart,btnsave,btnload,btnshop); 
+    	
+    	SceneMenu = new Scene(startpg,500,500);
+    	//****************SCENE MENU*****************************
     	//
-    	//game pg
+    	
+    	
+    	// ****************SCENE GAME*****************************
+    	Pane game=new Pane();
+    	game.setStyle("-fx-background-color: BLACK;");
     	Player player = new Player(100,250,250,1,0,"uu");
     	
     	Rectangle rect = new Rectangle(10,50, Color.RED);
@@ -95,9 +109,8 @@ public class ZombieRunner extends Application {
     	c1.setFill(Color.WHITE);
     	game.getChildren().add(c1);
     	
-    	game.setStyle("-fx-background-color: BLACK;");
-    	//game end
-    	
+    	SceneGame = new Scene(game,500,500);
+    	/*
     	// button actions
     	btnstart.setOnAction(new EventHandler<ActionEvent>() {
     		public void handle(ActionEvent e) {    	        
@@ -108,15 +121,44 @@ public class ZombieRunner extends Application {
     	        	rect
     	        });
     		}
-    	// end button actions
     	});
-        primaryStage.setScene(new Scene(startpg, 500,500));
+    	// end button actions
+    	 */
+    	//****************SCENE GAME*****************************
+    	
+    	//****************SCENE SHOP*****************************
+    	 Group ShopRoot = new Group();
+    	    
+    	    // 5 pixels space between child nodes
+    	 	VBox vbox1 = new VBox(5);
+    	 	VBox vbox2 = new VBox(5);
+    	    
+    	    // 1 pixel padding between child nodes only
+    	    vbox1.setPadding(new Insets(80));
+    	    Rectangle r1 = new Rectangle(10, 10);
+    	    Rectangle r2 = new Rectangle(10, 10);
+    	    Rectangle r3 = new Rectangle(10, 10);
+    	    Rectangle r4 = new Rectangle(10, 10);
+
+    	    vbox1.getChildren().addAll(r1, r2);
+    	    vbox2.getChildren().addAll(r3, r4);
+    	    ShopRoot.getChildren().addAll(vbox1, vbox2);
+    	    
+    	   // HBox.setMargin(r1, new Insets(80, 85, 82, 82));
+    	    
+    	    SceneShop = new Scene(ShopRoot, 500, 500);
+    	//****************SCENE SHOP*****************************
+    	//PRIMARY STAGE
+        primaryStage.setScene(SceneShop);
         primaryStage.show();
     }
+    
+    /*
     private double computeAngle( final Point2D v, final Point2D a, final Point2D b )
     {
       final double angle1 = Math.atan2( v.getY() - a.getY(), v.getX() - a.getX() );
       final double angle2 = Math.atan2( v.getY() - b.getY(), v.getX() - b.getX() );
       return (angle1 - angle2) / Math.PI * 180;
     }
+    */
 }
