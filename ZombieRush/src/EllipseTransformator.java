@@ -102,11 +102,6 @@ public class EllipseTransformator extends Application
     launch( args );
   }
 
-  /**
-   * Stolen and afterwards adapted from:
-   * https://stackoverflow.com/questions/3365171/calculating-the-angle-between-two-lines-without-having-to-
-   * calculate-the-slope
-   */
   private double computeAngle( final Point2D v, final Point2D a, final Point2D b )
   {
     final double angle1 = Math.atan2( v.getY() - a.getY(), v.getX() - a.getX() );
