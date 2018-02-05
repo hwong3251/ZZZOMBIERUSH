@@ -1,5 +1,3 @@
-
-
 import java.text.MessageFormat;
 
 import javafx.animation.FadeTransition;
@@ -115,6 +113,7 @@ public class EllipseTransformator extends Application
     final double angle2 = Math.atan2( v.getY() - b.getY(), v.getX() - b.getX() );
     return (angle1 - angle2) / Math.PI * 180;
   }
+  
   private static void showLine( final Point2D from, final Point2D to, final Color color, final int duration,
                                 final Group inGroup )
   {
