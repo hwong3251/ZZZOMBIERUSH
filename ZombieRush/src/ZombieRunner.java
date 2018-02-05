@@ -4,7 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
+import Characters.Player;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.application.Application;
@@ -13,13 +16,19 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
- 
+import javafx.geometry.Point2D;
+ //Yiren,Derek,leon,hoilam
 public class ZombieRunner extends Application {
+	private boolean playing=false;
     public static void main(String[] args) throws IOException {
     	
 		/*StringBuilder sb=new StringBuilder();
@@ -31,7 +40,6 @@ public class ZombieRunner extends Application {
     	
     	while ((line = br.readLine()) != null)
     	{
-
             // use comma as separator
     		 String[] board = line.split(",");
              System.out.println(board[0]+ "  "+board[1]);
@@ -44,32 +52,71 @@ public class ZombieRunner extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-    	StackPane root = new StackPane();
+    	StackPane startpg = new StackPane();
+    	Pane game=new Pane();
+    	game.setPrefSize(500,500);
+    	
+    	//start pg
     	Button btnstart = new Button("PLAY");
     	btnstart.setTranslateY(0);
     	btnstart.setFont(Font.loadFont("file:WarWound.otf",40));
     	btnstart.setStyle("-fx-padding:5;");
-    	root.getChildren().add(btnstart);
+    	startpg.getChildren().add(btnstart);
     	
     	Button btnsave = new Button("SAVE");
     	btnsave.setFont(Font.loadFont("file:WarWound.otf",40));
     	btnsave.setTranslateY(60);
     	btnsave.setStyle("-fx-padding:5;");
-    	root.getChildren().add(btnsave); 
+    	startpg.getChildren().add(btnsave); 
     	
     	Button btnload = new Button("LOAD");
     	btnload.setFont(Font.loadFont("file:WarWound.otf",40));
     	btnload.setStyle("-fx-padding:5;");
     	btnload.setTranslateY(120);
-    	root.getChildren().add(btnload); 
+    	startpg.getChildren().add(btnload); 
 
     	Button btnshop = new Button("SHOP");
     	btnshop.setFont(Font.loadFont("file:WarWound.otf",40));
     	btnshop.setStyle("-fx-padding:5;");
     	btnshop.setTranslateY(180);
-    	root.getChildren().add(btnshop); 
+    	startpg.getChildren().add(btnshop); 
+    	//end start
+    	//
+    	//game pg
+    	Player player = new Player(100,250,250,1,0,"uu");
     	
-        primaryStage.setScene(new Scene(root, 500,500));
+    	Rectangle rect = new Rectangle(10,50, Color.RED);
+        rect.setX(245);
+    	rect.setY(250);
+        rect.getTransforms().add(new Rotate(45,245,250)); 
+        game.getChildren().add(rect);
+        
+        Circle c1 = new Circle(250,250,20);
+    	c1.setFill(Color.WHITE);
+    	game.getChildren().add(c1);
+    	
+    	game.setStyle("-fx-background-color: BLACK;");
+    	//game end
+    	
+    	// button actions
+    	btnstart.setOnAction(new EventHandler<ActionEvent>() {
+    		public void handle(ActionEvent e) {    	        
+    	        primaryStage.setScene(new Scene(game, 500,500));
+    	        primaryStage.show();
+    	        game.setOnMouseEntered( entered->
+    	        {
+    	        	rect
+    	        });
+    		}
+    	// end button actions
+    	});
+        primaryStage.setScene(new Scene(startpg, 500,500));
         primaryStage.show();
+    }
+    private double computeAngle( final Point2D v, final Point2D a, final Point2D b )
+    {
+      final double angle1 = Math.atan2( v.getY() - a.getY(), v.getX() - a.getX() );
+      final double angle2 = Math.atan2( v.getY() - b.getY(), v.getX() - b.getX() );
+      return (angle1 - angle2) / Math.PI * 180;
     }
 }
