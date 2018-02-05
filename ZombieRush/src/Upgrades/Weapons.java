@@ -5,7 +5,7 @@ public abstract class Weapons {
 	private int price;
 	private boolean equipped;
 	
-	public Weapons(int dmg, int price, boolean equipped)
+	public Weapons(int dmg, int price, boolean equipped, Bullet bul)
 	{
 		this.dmg = dmg;
 		this.price = price;
@@ -21,7 +21,7 @@ public abstract class Weapons {
 		this.dmg = dmg;
 	}
 	public boolean changeEquipped()
-	{
+	
 		if(this.equipped = true)
 		{
 			return false;
