@@ -70,13 +70,13 @@ public class ZombieRunner extends Application {
     	btnstart.setStyle("-fx-padding:5;");
     	
     	Button btnsave = new Button("SAVE");
-    	btnsave.setOnAction(e->primaryStage.setScene(SceneSave));
+    	//btnsave.setOnAction(e->primaryStage.setScene(SceneSave));
     	btnsave.setFont(Font.loadFont("file:WarWound.otf",40));
     	btnsave.setTranslateY(60);
     	btnsave.setStyle("-fx-padding:5;");
     	
     	Button btnload = new Button("LOAD");
-    	btnload.setOnAction(e->primaryStage.setScene(SceneLoad));
+    	//btnload.setOnAction(e->primaryStage.setScene(SceneLoad));
     	btnload.setFont(Font.loadFont("file:WarWound.otf",40));
     	btnload.setStyle("-fx-padding:5;");
     	btnload.setTranslateY(120);
@@ -127,29 +127,32 @@ public class ZombieRunner extends Application {
     	//****************SCENE GAME*****************************
     	
     	//****************SCENE SHOP*****************************
-    	 Group ShopRoot = new Group();
+    		StackPane scenePane = new StackPane();
     	    
-    	    // 5 pixels space between child nodes
-    	 	VBox vbox1 = new VBox(5);
-    	 	VBox vbox2 = new VBox(5);
+    	 	VBox vbox1 = new VBox(100);
+    	    vbox1.setPadding(new Insets(20));
+
+    	    Button btnmenu = new Button("MENU");
+    	    btnmenu.setOnAction(e->primaryStage.setScene(SceneMenu));
+    	    btnmenu.setTranslateY(0);
+    	    btnmenu.setFont(Font.loadFont("file:WarWound.otf",40));
+    	    btnmenu.setStyle("-fx-padding:5;");
     	    
-    	    // 1 pixel padding between child nodes only
-    	    vbox1.setPadding(new Insets(80));
     	    Rectangle r1 = new Rectangle(10, 10);
     	    Rectangle r2 = new Rectangle(10, 10);
     	    Rectangle r3 = new Rectangle(10, 10);
     	    Rectangle r4 = new Rectangle(10, 10);
 
-    	    vbox1.getChildren().addAll(r1, r2);
-    	    vbox2.getChildren().addAll(r3, r4);
-    	    ShopRoot.getChildren().addAll(vbox1, vbox2);
+    	    vbox1.getChildren().addAll(btnmenu,r1, r2, r3, r4);
+    	    scenePane.getChildren().addAll(vbox1);
     	    
     	   // HBox.setMargin(r1, new Insets(80, 85, 82, 82));
     	    
-    	    SceneShop = new Scene(ShopRoot, 500, 500);
+    	    SceneShop = new Scene(scenePane, 500, 500);
     	//****************SCENE SHOP*****************************
+    	    
     	//PRIMARY STAGE
-        primaryStage.setScene(SceneShop);
+        primaryStage.setScene(SceneMenu);
         primaryStage.show();
     }
     
