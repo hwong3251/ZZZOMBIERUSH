@@ -5,9 +5,7 @@ public class Player extends Character{
 	private String name;
 	public Player(int hp, int x, int y, int stage, int gold, String name)
 	{
-		super(x,y,hp);
-		this.stage = stage;
-		this.gold = gold;
+		super(x,y,hp, gold, gold);
 		this.name = name;
 	}
 	

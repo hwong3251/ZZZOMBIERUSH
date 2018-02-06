@@ -105,4 +105,14 @@ public class Character {
       }
 
    }
+
+public int gethp() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+public int[] getposition() {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
