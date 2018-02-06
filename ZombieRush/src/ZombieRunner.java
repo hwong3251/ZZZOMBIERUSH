@@ -17,6 +17,9 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -30,6 +33,7 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
  //Yiren,Derek,leon,hoilam
 public class ZombieRunner extends Application {
 	
@@ -127,32 +131,50 @@ public class ZombieRunner extends Application {
     	//****************SCENE GAME*****************************
     	
     	//****************SCENE SHOP*****************************
-    		StackPane scenePane = new StackPane();
-    	    
-    	 	VBox vbox1 = new VBox(100);
-    	    vbox1.setPadding(new Insets(20));
-
-    	    Button btnmenu = new Button("MENU");
-    	    btnmenu.setOnAction(e->primaryStage.setScene(SceneMenu));
-    	    btnmenu.setTranslateY(0);
-    	    btnmenu.setFont(Font.loadFont("file:WarWound.otf",40));
-    	    btnmenu.setStyle("-fx-padding:5;");
-    	    
-    	    Rectangle r1 = new Rectangle(10, 10);
-    	    Rectangle r2 = new Rectangle(10, 10);
-    	    Rectangle r3 = new Rectangle(10, 10);
-    	    Rectangle r4 = new Rectangle(10, 10);
-
-    	    vbox1.getChildren().addAll(btnmenu,r1, r2, r3, r4);
-    	    scenePane.getChildren().addAll(vbox1);
-    	    
-    	   // HBox.setMargin(r1, new Insets(80, 85, 82, 82));
-    	    
-    	    SceneShop = new Scene(scenePane, 500, 500);
+	    	HBox hbox = new HBox(50);
+	        hbox.setAlignment(Pos.CENTER); // default TOP_LEFT
+	        
+	        VBox vbox1 = new VBox(20);
+	        vbox1.setAlignment(Pos.CENTER);
+	        vbox1.setStyle("-fx-border-style: dotted;"
+	                + "-fx-border-width: 1;"
+	                + "-fx-border-color: black");
+	        
+	        VBox vbox2 = new VBox(20);
+	        vbox2.setAlignment(Pos.CENTER);
+	        vbox2.setStyle("-fx-border-style: dotted;"
+	                + "-fx-border-width: 1;"
+	                + "-fx-border-color: black");
+	        
+	        VBox vbox3 = new VBox(20);
+	        vbox3.setAlignment(Pos.CENTER);
+	        vbox3.setStyle("-fx-border-style: dotted;"
+	                + "-fx-border-width: 1;"
+	                + "-fx-border-color: black");
+	        
+	        Button btnmenu = new Button("MENU");
+	        btnmenu.setOnAction(e->primaryStage.setScene(SceneMenu));
+	        btnmenu.setTranslateY(0);
+	        btnmenu.setFont(Font.loadFont("file:WarWound.otf",30));
+	        btnmenu.setStyle("-fx-padding:5;");
+	        
+	        for (int i = 0; i < 3; i++)
+	        {
+	            Button bt = new Button("Buy " );
+	            Button bt2 = new Button("Buy "); 
+	            Button bt3 = new Button("Buy ");
+	
+	            vbox1.getChildren().add(bt);
+	            vbox2.getChildren().add(bt2);
+	            vbox3.getChildren().add(bt3);
+	        }
+	        
+	        hbox.getChildren().addAll(vbox1, vbox2, vbox3,btnmenu);
+	        SceneShop = new Scene(hbox,500,500);
     	//****************SCENE SHOP*****************************
     	    
     	//PRIMARY STAGE
-        primaryStage.setScene(SceneMenu);
+        primaryStage.setScene(SceneShop);
         primaryStage.show();
     }
     
