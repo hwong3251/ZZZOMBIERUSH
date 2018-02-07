@@ -9,6 +9,8 @@ import java.awt.event.MouseMotionAdapter;
 
 import Characters.Player;
 import javafx.application.Application;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -38,6 +40,7 @@ import javafx.geometry.Pos;
 public class ZombieRunner extends Application {
 	
 	Scene SceneMenu, SceneShop, SceneGame, SceneSave, SceneLoad;
+	private double previousangle;
 	private boolean playing=false;
 	
     public static void main(String[] args) throws IOException {
@@ -92,6 +95,7 @@ public class ZombieRunner extends Application {
     	btnshop.setTranslateY(180);
     	
     	startpg.getChildren().addAll(btnstart,btnsave,btnload,btnshop); 
+
     	
     	SceneMenu = new Scene(startpg,500,500);
     	//****************SCENE MENU*****************************
@@ -103,10 +107,9 @@ public class ZombieRunner extends Application {
     	game.setStyle("-fx-background-color: BLACK;");
     	Player player = new Player(100,250,250,1,0,"uu");
     	
-    	Rectangle rect = new Rectangle(10,50, Color.RED);
+    	Rectangle rect = new Rectangle(50,10, Color.RED);
         rect.setX(245);
-    	rect.setY(250);
-        rect.getTransforms().add(new Rotate(45,245,250)); 
+    	rect.setY(245);
         game.getChildren().add(rect);
         
         Circle c1 = new Circle(250,250,20);
@@ -129,6 +132,32 @@ public class ZombieRunner extends Application {
     	// end button actions
     	 */
     	//****************SCENE GAME*****************************
+    	
+    	btnstart.setOnAction(new EventHandler<ActionEvent>() {
+    		public void handle(ActionEvent e) {    	        
+    	        primaryStage.setScene(SceneGame);
+    	        primaryStage.show();
+    	        /*following code is modified from
+    	         * https://gist.github.com/bugabinga/9636541
+    	         */
+    	        game.setOnMouseMoved(moved ->
+    	        {
+    	        	Point2D mousepoint= new Point2D(moved.getX(), moved.getY());
+    	        	double anglemove=computeAngle(mousepoint);
+    	        	//System.out.println(moved.getX());
+    	        	//System.out.println(moved.getY());
+    	        	//System.out.println();
+    	        	//System.out.println(anglemove);
+    	        	previousangle=anglemove;
+    	        	rect.getTransforms().clear();
+    	        	//rect.getTransforms().add(new Rotate(-anglemove,250,250));
+    	        	rect.getTransforms().add(new Rotate(anglemove,250,250));
+    	        });
+    		}
+    	 //end button actions
+    	});
+
+
     	
     	//****************SCENE SHOP*****************************
 	    	HBox hbox = new HBox(50);
@@ -176,14 +205,11 @@ public class ZombieRunner extends Application {
     	//PRIMARY STAGE
         primaryStage.setScene(SceneShop);
         primaryStage.show();
-    }
-    
-    /*
-    private double computeAngle( final Point2D v, final Point2D a, final Point2D b )
+        
+    }  
+    private double computeAngle( final Point2D a )
     {
-      final double angle1 = Math.atan2( v.getY() - a.getY(), v.getX() - a.getX() );
-      final double angle2 = Math.atan2( v.getY() - b.getY(), v.getX() - b.getX() );
-      return (angle1 - angle2) / Math.PI * 180;
+      final double angle1 = Math.toDegrees(Math.atan2(-(a.getX()-250), a.getY()-250));
+      return angle1+90;
     }
-    */
 }
