@@ -158,7 +158,7 @@ public class ZombieRunner extends Application {
 
 
     	
-    	//****************SCENE SHOP*****************************
+    	//****************SCENE_SHOP*****************************
 	    Image auto = new Image("Auto.png");
 			ImageView iAuto = new ImageView();
 			iAuto.setImage(auto);
@@ -186,12 +186,21 @@ public class ZombieRunner extends Application {
 	        weaponimage[4] = iSpear;
 	        weaponimage[5] = iBest;
 	        
-	        /*
+	        VBox vbox4 = new VBox(20);
+	        vbox4.setAlignment(Pos.CENTER);
+	        vbox4.setStyle("-fx-border-style: dotted;"
+	                + "-fx-border-width: 1;"
+	                + "-fx-border-color: black");
+	        
 	        for(int i = 0; i < weaponimage.length; i++)
 	        {
-	        	
+	        	weaponimage[i].setFitWidth(50);
+	        	weaponimage[i].setPreserveRatio(true);
+	            weaponimage[i].setSmooth(true);
+	            weaponimage[i].setCache(true);
+	            vbox4.getChildren().add(weaponimage[i]);
 	        }
-    	*/
+	        
 	    	HBox hbox = new HBox(50);
 	        hbox.setAlignment(Pos.CENTER); // default TOP_LEFT
 	        
@@ -213,6 +222,8 @@ public class ZombieRunner extends Application {
 	                + "-fx-border-width: 1;"
 	                + "-fx-border-color: black");
 	        
+	       
+	        
 	        Button btnmenu = new Button("MENU");
 	        btnmenu.setOnAction(e->primaryStage.setScene(SceneMenu));
 	        btnmenu.setTranslateY(0);
@@ -231,7 +242,8 @@ public class ZombieRunner extends Application {
 	        }
 	        
 	        
-	        hbox.getChildren().addAll(vbox1, vbox2, vbox3,btnmenu);
+	        hbox.getChildren().addAll(vbox1, vbox2, vbox3, vbox4, btnmenu);
+	        
 	        SceneShop = new Scene(hbox,500,500);
     	//****************SCENE SHOP*****************************
     	    
