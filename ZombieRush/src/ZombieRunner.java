@@ -107,31 +107,26 @@ public class ZombieRunner extends Application {
     	game.setStyle("-fx-background-color: BLACK;");
     	Player player = new Player(100,250,250,1,0,"uu");
     	
+    	Button btnpause = new Button("Pause");
+        btnpause.setOnAction(e->
+        {
+        	//stop the game 
+        }
+        		);
+        btnpause.setFont(Font.loadFont("file:WarWound.otf",30));
+        btnpause.setStyle("-fx-padding:5;");
+        btnpause.setTranslateX(600);
+        btnpause.setTranslateY(100);
+    	
     	Rectangle rect = new Rectangle(50,10, Color.RED);
         rect.setX(245);
     	rect.setY(245);
-        game.getChildren().add(rect);
         
         Circle c1 = new Circle(250,250,20);
     	c1.setFill(Color.WHITE);
-    	game.getChildren().add(c1);
+    	game.getChildren().addAll(rect,c1,btnpause);
     	
-    	SceneGame = new Scene(game,500,500);
-    	/*
-    	// button actions
-    	btnstart.setOnAction(new EventHandler<ActionEvent>() {
-    		public void handle(ActionEvent e) {    	        
-    	        primaryStage.setScene(new Scene(game, 500,500));
-    	        primaryStage.show();
-    	        game.setOnMouseEntered( entered->
-    	        {
-    	        	rect
-    	        });
-    		}
-    	});
-    	// end button actions
-    	 */
-    	//****************SCENE GAME*****************************
+    	SceneGame = new Scene(game,700,500);
     	
     	btnstart.setOnAction(new EventHandler<ActionEvent>() {
     		public void handle(ActionEvent e) {    	        
@@ -154,7 +149,6 @@ public class ZombieRunner extends Application {
     	        	rect.getTransforms().add(new Rotate(anglemove,250,250));
     	        });
     		}
-    	 //end button actions
     	});
 
 
