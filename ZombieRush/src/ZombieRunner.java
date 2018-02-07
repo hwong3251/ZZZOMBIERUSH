@@ -186,11 +186,12 @@ public class ZombieRunner extends Application {
 	        weaponimage[4] = iSpear;
 	        weaponimage[5] = iBest;
 	        
+	        /*
 	        for(int i = 0; i < weaponimage.length; i++)
 	        {
 	        	
 	        }
-    	
+    	*/
 	    	HBox hbox = new HBox(50);
 	        hbox.setAlignment(Pos.CENTER); // default TOP_LEFT
 	        
@@ -232,7 +233,6 @@ public class ZombieRunner extends Application {
 	        
 	        hbox.getChildren().addAll(vbox1, vbox2, vbox3,btnmenu);
 	        SceneShop = new Scene(hbox,500,500);
-	        SceneShop.getStylesheets().add("ShopCSS.css");
     	//****************SCENE SHOP*****************************
     	    
     	//PRIMARY STAGE
