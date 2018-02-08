@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,12 +23,15 @@ import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -65,7 +69,7 @@ public class ZombieRunner extends Application {
     }
     
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws FileNotFoundException {
     	
     	//****************SCENE MENU*****************************
     	StackPane startpg = new StackPane();
@@ -94,29 +98,48 @@ public class ZombieRunner extends Application {
     	btnshop.setStyle("-fx-padding:5;");
     	btnshop.setTranslateY(180);
     	
-    	startpg.getChildren().addAll(btnstart,btnsave,btnload,btnshop); 
-
-    	
+    	   
+        FileInputStream input = new FileInputStream("camo.jpg");
+        Image Image = new Image(input);
+        ImageView camo = new ImageView(Image);
+        camo.setFitHeight(500);
+        camo.setFitWidth(500);
+        
+    
     	SceneMenu = new Scene(startpg,500,500);
     	//****************SCENE MENU*****************************
-    	//
-    	
+    	startpg.getChildren().addAll(camo,btnstart,btnsave,btnload,btnshop); 
     	
     	// ****************SCENE GAME*****************************
     	Pane game=new Pane();
     	game.setStyle("-fx-background-color: BLACK;");
     	Player player = new Player(100,250,250,1,0,"uu");
     	
+    	Line line = new Line(); 
+    	line.setStartX(500); 
+    	line.setStartY(0); 
+    	line.setEndX(500); 
+    	line.setEndY(500);
+    	line.setStroke(Color.AQUA);
+    	line.setStrokeWidth(5);
+    	
+    	
     	Button btnpause = new Button("Pause");
         btnpause.setOnAction(e->
         {
         	//stop the game 
-        }
-        		);
+        });
         btnpause.setFont(Font.loadFont("file:WarWound.otf",30));
         btnpause.setStyle("-fx-padding:5;");
-        btnpause.setTranslateX(600);
+        btnpause.setTranslateX(530);
         btnpause.setTranslateY(100);
+        
+        Button btngameshop = new Button("SHOP");
+    	btngameshop.setOnAction(e->primaryStage.setScene(SceneShop));
+    	btngameshop.setFont(Font.loadFont("file:WarWound.otf",30));
+    	btngameshop.setStyle("-fx-padding:5;");
+    	btngameshop.setTranslateX(537);
+    	btngameshop.setTranslateY(200);
     	
     	Rectangle rect = new Rectangle(50,10, Color.RED);
         rect.setX(245);
@@ -124,12 +147,14 @@ public class ZombieRunner extends Application {
         
         Circle c1 = new Circle(250,250,20);
     	c1.setFill(Color.WHITE);
-    	game.getChildren().addAll(rect,c1,btnpause);
+    	game.getChildren().addAll(rect,c1,btnpause,btngameshop,line);
     	
-    	SceneGame = new Scene(game,700,500);
+    	SceneGame = new Scene(game,650,500);
     	
-    	btnstart.setOnAction(new EventHandler<ActionEvent>() {
-    		public void handle(ActionEvent e) {    	        
+    	btnstart.setOnAction(new EventHandler<ActionEvent>() 
+    	{
+    		public void handle(ActionEvent e)
+    		{    	        
     	        primaryStage.setScene(SceneGame);
     	        primaryStage.show();
     	        /*following code is modified from
@@ -137,16 +162,15 @@ public class ZombieRunner extends Application {
     	         */
     	        game.setOnMouseMoved(moved ->
     	        {
+    	        	if(moved.getX()<=500)
+    	        	{
     	        	Point2D mousepoint= new Point2D(moved.getX(), moved.getY());
     	        	double anglemove=computeAngle(mousepoint);
-    	        	//System.out.println(moved.getX());
-    	        	//System.out.println(moved.getY());
-    	        	//System.out.println();
-    	        	//System.out.println(anglemove);
+
     	        	previousangle=anglemove;
     	        	rect.getTransforms().clear();
-    	        	//rect.getTransforms().add(new Rotate(-anglemove,250,250));
     	        	rect.getTransforms().add(new Rotate(anglemove,250,250));
+    	        	}
     	        });
     		}
     	});
