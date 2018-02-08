@@ -5,8 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.image.BufferedImage;
 
 import Characters.Player;
 import javafx.application.Application;
@@ -48,7 +51,7 @@ public class ZombieRunner extends Application {
 	private boolean playing=false;
 	
     public static void main(String[] args) throws IOException {
-    	
+	    	
 		/*StringBuilder sb=new StringBuilder();
 		System.out.println("High Score List");  	
     	String csvFile ="highscore.csv";
@@ -177,7 +180,49 @@ public class ZombieRunner extends Application {
 
 
     	
-    	//****************SCENE SHOP*****************************
+    	//****************SCENE_SHOP*****************************
+	    Image auto = new Image("Auto.png");
+			ImageView iAuto = new ImageView();
+			iAuto.setImage(auto);
+		Image boomerang = new Image("Boomerang.png");
+	    	ImageView iBoomerang = new ImageView();
+	        iBoomerang.setImage(boomerang);
+		Image click = new Image("Click.png");
+	    	ImageView iClick = new ImageView();
+	        iClick.setImage(click);
+		Image poison = new Image("Poison.png");
+	    	ImageView iPoison = new ImageView();
+	        iPoison.setImage(poison);
+		Image spear = new Image("Spear.png");
+	    	ImageView  iSpear = new ImageView();
+	        iSpear.setImage(spear);
+		Image best = new Image("Best.png");
+	    	ImageView iBest = new ImageView();
+	        iBest.setImage(best);
+	        
+	        ImageView[] weaponimage = new ImageView[6];
+	        weaponimage[0] = iAuto;
+	        weaponimage[1] = iBoomerang;
+	        weaponimage[2] = iClick;
+	        weaponimage[3] = iPoison;
+	        weaponimage[4] = iSpear;
+	        weaponimage[5] = iBest;
+	        
+	        VBox vbox4 = new VBox(20);
+	        vbox4.setAlignment(Pos.CENTER);
+	        vbox4.setStyle("-fx-border-style: dotted;"
+	                + "-fx-border-width: 1;"
+	                + "-fx-border-color: black");
+	        
+	        for(int i = 0; i < weaponimage.length; i++)
+	        {
+	        	weaponimage[i].setFitWidth(50);
+	        	weaponimage[i].setPreserveRatio(true);
+	            weaponimage[i].setSmooth(true);
+	            weaponimage[i].setCache(true);
+	            vbox4.getChildren().add(weaponimage[i]);
+	        }
+	        
 	    	HBox hbox = new HBox(50);
 	        hbox.setAlignment(Pos.CENTER); // default TOP_LEFT
 	        
@@ -199,6 +244,8 @@ public class ZombieRunner extends Application {
 	                + "-fx-border-width: 1;"
 	                + "-fx-border-color: black");
 	        
+	       
+	        
 	        Button btnmenu = new Button("MENU");
 	        btnmenu.setOnAction(e->primaryStage.setScene(SceneMenu));
 	        btnmenu.setTranslateY(0);
@@ -216,7 +263,9 @@ public class ZombieRunner extends Application {
 	            vbox3.getChildren().add(bt3);
 	        }
 	        
-	        hbox.getChildren().addAll(vbox1, vbox2, vbox3,btnmenu);
+	        
+	        hbox.getChildren().addAll(vbox1, vbox2, vbox3, vbox4, btnmenu);
+	        
 	        SceneShop = new Scene(hbox,500,500);
     	//****************SCENE SHOP*****************************
     	    
