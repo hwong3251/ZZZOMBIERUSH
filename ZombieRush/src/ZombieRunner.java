@@ -107,12 +107,9 @@ public class ZombieRunner extends Application {
         ImageView camo = new ImageView(Image);
         camo.setFitHeight(500);
         camo.setFitWidth(500);
-        
+        startpg.getChildren().addAll(camo,btnstart,btnsave,btnload,btnshop); 
     
     	SceneMenu = new Scene(startpg,500,500);
-    	//****************SCENE MENU*****************************
-    	startpg.getChildren().addAll(camo,btnstart,btnsave,btnload,btnshop); 
-    	
     	// ****************SCENE GAME*****************************
     	Pane game=new Pane();
     	game.setStyle("-fx-background-color: BLACK;");
@@ -177,8 +174,9 @@ public class ZombieRunner extends Application {
     	        });
     		}
     	});
-
-
+    	// ****************SCENE SAVE*****************************
+    	
+    	// ****************SCENE LOAD*****************************
     	
     	//****************SCENE_SHOP*****************************
 	    Image auto = new Image("Auto.png");
@@ -270,9 +268,9 @@ public class ZombieRunner extends Application {
     	//****************SCENE SHOP*****************************
     	    
     	//PRIMARY STAGE
-        primaryStage.setScene(SceneShop);
+        primaryStage.setScene(SceneMenu);
         primaryStage.show();
-        
+        primaryStage.setTitle("ZombieRush");
     }  
     private double computeAngle( final Point2D a )
     {
