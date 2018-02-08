@@ -25,6 +25,7 @@ public class Zombie{
 	{
 		return this.dmg;
 	}
+	//aa
 	public int[]getposition() {
 		// TODO Auto-generated method stub
 		int[]position = new int[2];

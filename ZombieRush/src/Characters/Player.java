@@ -26,7 +26,7 @@ public class Player extends Character{
 		// TODO Auto-generated method stub
 		return this.hp;
 	}
-	
+	//aaa
 	@Override
 	public int[] getposition() {
 		// TODO Auto-generated method stub
