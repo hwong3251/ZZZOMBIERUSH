@@ -1,5 +1,4 @@
 package Characters;
- 
  public class Bullet {
  	private double x, y, a; //x y and angle
  	private int w,h; //width and height
