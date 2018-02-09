@@ -111,7 +111,7 @@ public class ZombieRunner extends Application {
     	// ****************SCENE GAME*****************************
     	Pane game=new Pane();
     	game.setStyle("-fx-background-color: BLACK;");
-    	Player player = new Player(100,250,250,1,0,"uu");
+    	Player player = new Player(100,250,250,1,0,1,0);
     	
     	Line line = new Line(); 
     	line.setStartX(500); 
