@@ -11,10 +11,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import Characters.Player;
+import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,6 +32,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -48,6 +54,7 @@ public class ZombieRunner extends Application {
 	Scene SceneMenu, SceneShop, SceneGame, SceneSave, SceneLoad;
 	private double previousangle;
 	private boolean playing=false;
+	private static final double W = 800, H = 560;
 	
     public static void main(String[] args) throws IOException {
 	    	
@@ -178,102 +185,169 @@ public class ZombieRunner extends Application {
     	// ****************SCENE LOAD*****************************
     	
     	//****************SCENE_SHOP*****************************
-	    Image auto = new Image("Auto.png");
-			ImageView iAuto = new ImageView();
-			iAuto.setImage(auto);
-		Image boomerang = new Image("Boomerang.png");
-	    	ImageView iBoomerang = new ImageView();
-	        iBoomerang.setImage(boomerang);
-		Image click = new Image("Click.png");
-	    	ImageView iClick = new ImageView();
-	        iClick.setImage(click);
-		Image poison = new Image("Poison.png");
-	    	ImageView iPoison = new ImageView();
-	        iPoison.setImage(poison);
-		Image spear = new Image("Spear.png");
-	    	ImageView  iSpear = new ImageView();
-	        iSpear.setImage(spear);
-		Image best = new Image("Best.png");
-	    	ImageView iBest = new ImageView();
-	        iBest.setImage(best);
-	        
-	        ImageView[] weaponimage = new ImageView[6];
-	        weaponimage[0] = iAuto;
-	        weaponimage[1] = iBoomerang;
-	        weaponimage[2] = iClick;
-	        weaponimage[3] = iPoison;
-	        weaponimage[4] = iSpear;
-	        weaponimage[5] = iBest;
-	        
-	        VBox vbox4 = new VBox(20);
-	        vbox4.setAlignment(Pos.CENTER);
-	        vbox4.setStyle("-fx-border-style: dotted;"
-	                + "-fx-border-width: 1;"
-	                + "-fx-border-color: black");
-	        
-	        for(int i = 0; i < weaponimage.length; i++)
-	        {
-	        	weaponimage[i].setFitWidth(50);
-	        	weaponimage[i].setPreserveRatio(true);
-	            weaponimage[i].setSmooth(true);
-	            weaponimage[i].setCache(true);
-	            vbox4.getChildren().add(weaponimage[i]);
-	        }
-	        
-	    	HBox hbox = new HBox(50);
-	        hbox.setAlignment(Pos.CENTER); // default TOP_LEFT
-	        
-	        VBox vbox1 = new VBox(20);
-	        vbox1.setAlignment(Pos.CENTER);
-	        vbox1.setStyle("-fx-border-style: dotted;"
-	                + "-fx-border-width: 1;"
-	                + "-fx-border-color: black");
-	        
-	        VBox vbox2 = new VBox(20);
-	        vbox2.setAlignment(Pos.CENTER);
-	        vbox2.setStyle("-fx-border-style: dotted;"
-	                + "-fx-border-width: 1;"
-	                + "-fx-border-color: black");
-	        
-	        VBox vbox3 = new VBox(20);
-	        vbox3.setAlignment(Pos.CENTER);
-	        vbox3.setStyle("-fx-border-style: dotted;"
-	                + "-fx-border-width: 1;"
-	                + "-fx-border-color: black");
-	        
-	       
-	        
-	        Button btnmenu = new Button("MENU");
-	        btnmenu.setOnAction(e->primaryStage.setScene(SceneMenu));
-	        btnmenu.setTranslateY(0);
-	        btnmenu.setFont(Font.loadFont("file:WarWound.otf",30));
-	        btnmenu.setStyle("-fx-padding:5;");
-	        
-	        for (int i = 0; i < 3; i++)
-	        {
-	            Button bt = new Button("Buy " );
-	            Button bt2 = new Button("Buy "); 
-	            Button bt3 = new Button("Buy ");
-	
-	            vbox1.getChildren().add(bt);
-	            vbox2.getChildren().add(bt2);
-	            vbox3.getChildren().add(bt3);
-	        }
-	        
-	        
-	        hbox.getChildren().addAll(vbox1, vbox2, vbox3, vbox4, btnmenu);
-	        
-	        SceneShop = new Scene(hbox,500,500);
+    	Image auto = new Image("Auto.png");
+		ImageView iAuto = new ImageView();
+		iAuto.setImage(auto);
+	Image boomerang = new Image("Boomerang.png");
+    	ImageView iBoomerang = new ImageView();
+        iBoomerang.setImage(boomerang);
+	Image click = new Image("Click.png");
+    	ImageView iClick = new ImageView();
+        iClick.setImage(click);
+	Image poison = new Image("Poison.png");
+    	ImageView iPoison = new ImageView();
+        iPoison.setImage(poison);
+	Image spear = new Image("Spear.png");
+    	ImageView  iSpear = new ImageView();
+        iSpear.setImage(spear);
+	Image best = new Image("Best.png");
+    	ImageView iBest = new ImageView();
+        iBest.setImage(best);
+        
+        ImageView[] weaponimage = new ImageView[6];
+        weaponimage[0] = iAuto;
+        weaponimage[1] = iBoomerang;
+        weaponimage[2] = iClick;
+        weaponimage[3] = iPoison;
+        weaponimage[4] = iSpear;
+        weaponimage[5] = iBest;
+        
+        VBox vbox4 = new VBox(20);
+        vbox4.setAlignment(Pos.CENTER);
+        vbox4.setStyle("-fx-border-style: dotted;"
+                + "-fx-border-width: 1;"
+                + "-fx-border-color: black");
+        
+        for(int i = 0; i < weaponimage.length; i++)
+        {
+        	weaponimage[i].setFitHeight(80);
+        	weaponimage[i].setPreserveRatio(true);
+            weaponimage[i].setSmooth(true);
+            weaponimage[i].setCache(true);
+            vbox4.getChildren().add(weaponimage[i]);
+        }
+        
+    	HBox hbox = new HBox(10);
+        hbox.setAlignment(Pos.CENTER); // default TOP_LEFT
+        
+        VBox vbox1 = new VBox(10);
+        vbox1.setAlignment(Pos.CENTER_LEFT);
+        vbox1.setStyle("-fx-border-style: dotted;"
+                + "-fx-border-width: 1;"
+                + "-fx-border-color: black");
+        
+        VBox vbox2 = new VBox(20);
+        vbox2.setAlignment(Pos.CENTER_LEFT);
+        vbox2.setStyle("-fx-border-style: dotted;"
+                + "-fx-border-width: 1;"
+                + "-fx-border-color: black");
+    
+        
+        Button btnmenu = new Button("MENU");
+        btnmenu.setOnAction(e->primaryStage.setScene(SceneMenu));
+        btnmenu.setAlignment(Pos.TOP_RIGHT);
+        btnmenu.setTranslateY(-190);
+        btnmenu.setTranslateX(-100);	
+        btnmenu.setMinWidth(90);	
+        btnmenu.setFont(Font.loadFont("file:WarWound.otf",30));
+        btnmenu.setStyle("-fx-padding:5;");
+        
+        Label title = new Label("Weapons Shop");
+        	title.setTranslateY(-220);
+        	title.setTranslateX(250);
+        	title.setMinWidth(300);
+        	title.setFont(Font.loadFont("file:WarWound.otf",30));
+        
+        Button btnAuto = new Button();
+        	btnAuto.setGraphic(iAuto);
+        Button btnClick = new Button();
+        	btnClick.setGraphic(iClick);
+        Button btnBoomerang = new Button();
+        	btnBoomerang.setGraphic(iBoomerang);
+        Button btnPoison = new Button();
+        	btnPoison.setGraphic(iPoison);
+        Button btnSpear = new Button();
+        	btnSpear.setGraphic(iSpear);
+        Button btnBest = new Button();
+        	btnBest.setGraphic(iBest);
+        
+        vbox1.getChildren().addAll(btnAuto, btnClick, btnSpear);
+        	vbox1.setMaxSize(35, 300);
+        	vbox1.setTranslateX(-80);
+        vbox2.getChildren().addAll(btnPoison, btnBoomerang, btnBest);	
+        	vbox2.setMaxSize(35, 300);
+        	vbox2.setTranslateX(-80);
+        
+        hbox.getChildren().addAll(title,vbox1, vbox2,btnmenu);
+        
+        SceneShop = new Scene(hbox,500,500);
     	//****************SCENE SHOP*****************************
     	    
     	//PRIMARY STAGE
         primaryStage.setScene(SceneMenu);
         primaryStage.show();
         primaryStage.setTitle("ZombieRush");
+        BorderPane root = new BorderPane();
+    	Scene scene = new Scene(root, W, H);
+    	Circle c = new Circle();
+    	c.setCenterX(250.0f); 
+        c.setCenterY(200.0f); 
+        c.setRadius(30.0f); 
+    	double y = 0;
+    	double x = randomWithRange(0, 500);
+    	double a = 0;
+    	double b = randomWithRange(0, 500);
+    	double d = 0;
+    	double e = randomWithRange(0, 500);
+    	final Rectangle player1 = new Rectangle(400, 300, 50, 50);
+    	final Rectangle zombie = new Rectangle(x, y, 50, 50);
+    	final Rectangle zombie2 = new Rectangle(b, a, 50, 50);
+    	final Rectangle zombie3 = new Rectangle(e, d, 50, 50);
+    	c.setFill(Color.BLUE);
+    	player1.setFill(Color.BLACK);
+    	zombie.setFill(Color.GREEN);
+    	zombie2.setFill(Color.GREEN);
+    	zombie3.setFill(Color.GREEN);
+    	final KeyValue ab = new KeyValue(c.centerYProperty(),-500);
+    	final KeyFrame ac = new KeyFrame(Duration.millis(1000), ab);
+    	final KeyValue cz = new KeyValue(zombie.yProperty(), 500);
+    	final KeyFrame cx = new KeyFrame(Duration.millis(1000), cz);
+    	final KeyValue dc = new KeyValue(zombie2.yProperty(),400);
+    	final KeyFrame da = new KeyFrame(Duration.millis(1000), dc);
+    	final KeyValue ba = new KeyValue(zombie3.yProperty(),400);
+    	final KeyFrame bb = new KeyFrame(Duration.millis(1000), ba);
+    	final Timeline timeline = new Timeline();
+    	timeline.setCycleCount(100);
+    	timeline.setAutoReverse(false);
+    	game.getChildren().add(c);
+    	game.getChildren().add(player1);
+    	game.getChildren().add(zombie);
+    	game.getChildren().add(zombie2);
+    	game.getChildren().add(zombie3);
+    	timeline.getKeyFrames().add(ac);
+    	timeline.getKeyFrames().add(cx);
+    	timeline.getKeyFrames().add(da);
+    	timeline.getKeyFrames().add(bb);
+    	timeline.play();
+        primaryStage.setScene(SceneMenu);
+        primaryStage.show();
+        AnimationTimer timer = new AnimationTimer() 
+        {
+            public void handle(long now) 
+            {
+               
+            }
+        };
+        timer.start();
     }  
     private double computeAngle( final Point2D a )
     {
       final double angle1 = Math.toDegrees(Math.atan2(-(a.getX()-250), a.getY()-250));
       return angle1+90;
+    }
+    public int randomWithRange(int min, int max)
+    {
+    	int range = (max - min) + 1;     
+    	return (int)(Math.random() * range) + min;
     }
 }
