@@ -284,6 +284,7 @@ public class ZombieRunner extends Application {
     	//****************SCENE SHOP*****************************
     	    
     	//PRIMARY STAGE
+        // THE BULLET ANIMATION
         primaryStage.setScene(SceneMenu);
         primaryStage.show();
         primaryStage.setTitle("ZombieRush");
@@ -300,6 +301,7 @@ public class ZombieRunner extends Application {
     	double d = 0;
     	double e = randomWithRange(0, 500);
     	final Rectangle player1 = new Rectangle(400, 300, 50, 50);
+    	// zombies
     	final Rectangle zombie = new Rectangle(x, y, 50, 50);
     	final Rectangle zombie2 = new Rectangle(b, a, 50, 50);
     	final Rectangle zombie3 = new Rectangle(e, d, 50, 50);
