@@ -11,7 +11,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
+//xd
 public class BulletMove extends Application 
 {
 	private static final double W = 800, H = 560;
@@ -20,10 +20,9 @@ public class BulletMove extends Application
     {
     	BorderPane root = new BorderPane();
     	Scene scene = new Scene(root, W, H);
-    	final Rectangle rectBasicTimeline = new Rectangle(400, 280, 50, 50);
     	Circle c = new Circle();
-    	c.setCenterX(550.0f); 
-        c.setCenterY(0.0f); 
+    	c.setCenterX(420.0f); 
+        c.setCenterY(300.0f); 
         c.setRadius(30.0f); 
     	double y = 0;
     	double x = randomWithRange(0, 500);
@@ -36,14 +35,11 @@ public class BulletMove extends Application
     	final Rectangle zombie2 = new Rectangle(b, a, 50, 50);
     	final Rectangle zombie3 = new Rectangle(e, d, 50, 50);
     	c.setFill(Color.BLUE);
-    	rectBasicTimeline.setFill(Color.RED);
     	player.setFill(Color.BLACK);
     	zombie.setFill(Color.GREEN);
     	zombie2.setFill(Color.GREEN);
     	zombie3.setFill(Color.GREEN);
-    	final KeyValue kv = new KeyValue(rectBasicTimeline.yProperty(), 600);
-    	final KeyFrame kf = new KeyFrame(Duration.millis(5000), kv);
-    	final KeyValue ab = new KeyValue(c.centerYProperty(),400);
+    	final KeyValue ab = new KeyValue(c.centerYProperty(),-500);
     	final KeyFrame ac = new KeyFrame(Duration.millis(1000), ab);
     	final KeyValue cz = new KeyValue(zombie.yProperty(), 500);
     	final KeyFrame cx = new KeyFrame(Duration.millis(1000), cz);
@@ -52,15 +48,13 @@ public class BulletMove extends Application
     	final KeyValue ba = new KeyValue(zombie3.yProperty(),400);
     	final KeyFrame bb = new KeyFrame(Duration.millis(1000), ba);
     	final Timeline timeline = new Timeline();
-    	timeline.setCycleCount(1);
+    	timeline.setCycleCount(10);
     	timeline.setAutoReverse(false);
-    	root.getChildren().add(rectBasicTimeline);
     	root.getChildren().add(c);
     	root.getChildren().add(player);
     	root.getChildren().add(zombie);
     	root.getChildren().add(zombie2);
     	root.getChildren().add(zombie3);
-    	timeline.getKeyFrames().add(kf);
     	timeline.getKeyFrames().add(ac);
     	timeline.getKeyFrames().add(cx);
     	timeline.getKeyFrames().add(da);
