@@ -214,55 +214,65 @@ public class ZombieRunner extends Application {
 	        
 	        for(int i = 0; i < weaponimage.length; i++)
 	        {
-	        	weaponimage[i].setFitWidth(50);
+	        	weaponimage[i].setFitHeight(80);
 	        	weaponimage[i].setPreserveRatio(true);
 	            weaponimage[i].setSmooth(true);
 	            weaponimage[i].setCache(true);
 	            vbox4.getChildren().add(weaponimage[i]);
 	        }
 	        
-	    	HBox hbox = new HBox(50);
+	    	HBox hbox = new HBox(10);
 	        hbox.setAlignment(Pos.CENTER); // default TOP_LEFT
 	        
-	        VBox vbox1 = new VBox(20);
-	        vbox1.setAlignment(Pos.CENTER);
+	        VBox vbox1 = new VBox(10);
+	        vbox1.setAlignment(Pos.CENTER_LEFT);
 	        vbox1.setStyle("-fx-border-style: dotted;"
 	                + "-fx-border-width: 1;"
 	                + "-fx-border-color: black");
 	        
 	        VBox vbox2 = new VBox(20);
-	        vbox2.setAlignment(Pos.CENTER);
+	        vbox2.setAlignment(Pos.CENTER_LEFT);
 	        vbox2.setStyle("-fx-border-style: dotted;"
 	                + "-fx-border-width: 1;"
 	                + "-fx-border-color: black");
-	        
-	        VBox vbox3 = new VBox(20);
-	        vbox3.setAlignment(Pos.CENTER);
-	        vbox3.setStyle("-fx-border-style: dotted;"
-	                + "-fx-border-width: 1;"
-	                + "-fx-border-color: black");
-	        
-	       
+	    
 	        
 	        Button btnmenu = new Button("MENU");
 	        btnmenu.setOnAction(e->primaryStage.setScene(SceneMenu));
-	        btnmenu.setTranslateY(0);
+	        btnmenu.setAlignment(Pos.TOP_RIGHT);
+	        btnmenu.setTranslateY(-190);
+	        btnmenu.setTranslateX(-100);	
+	        btnmenu.setMinWidth(90);	
 	        btnmenu.setFont(Font.loadFont("file:WarWound.otf",30));
 	        btnmenu.setStyle("-fx-padding:5;");
 	        
-	        for (int i = 0; i < 3; i++)
-	        {
-	            Button bt = new Button("Buy " );
-	            Button bt2 = new Button("Buy "); 
-	            Button bt3 = new Button("Buy ");
-	
-	            vbox1.getChildren().add(bt);
-	            vbox2.getChildren().add(bt2);
-	            vbox3.getChildren().add(bt3);
-	        }
+	        Label title = new Label("Weapons Shop");
+	        	title.setTranslateY(-220);
+	        	title.setTranslateX(250);
+	        	title.setMinWidth(300);
+	        	title.setFont(Font.loadFont("file:WarWound.otf",30));
 	        
+	        Button btnAuto = new Button();
+	        	btnAuto.setGraphic(iAuto);
+	        Button btnClick = new Button();
+	        	btnClick.setGraphic(iClick);
+	        Button btnBoomerang = new Button();
+	        	btnBoomerang.setGraphic(iBoomerang);
+	        Button btnPoison = new Button();
+	        	btnPoison.setGraphic(iPoison);
+	        Button btnSpear = new Button();
+	        	btnSpear.setGraphic(iSpear);
+	        Button btnBest = new Button();
+	        	btnBest.setGraphic(iBest);
 	        
-	        hbox.getChildren().addAll(vbox1, vbox2, vbox3, vbox4, btnmenu);
+	        vbox1.getChildren().addAll(btnAuto, btnClick, btnSpear);
+	        	vbox1.setMaxSize(35, 300);
+	        	vbox1.setTranslateX(-80);
+	        vbox2.getChildren().addAll(btnPoison, btnBoomerang, btnBest);	
+	        	vbox2.setMaxSize(35, 300);
+	        	vbox2.setTranslateX(-80);
+	        
+	        hbox.getChildren().addAll(title,vbox1, vbox2,btnmenu);
 	        
 	        SceneShop = new Scene(hbox,500,500);
     	//****************SCENE SHOP*****************************
