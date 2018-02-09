@@ -11,7 +11,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
+//xd
 public class BulletMove extends Application 
 {
 	private static final double W = 800, H = 560;
