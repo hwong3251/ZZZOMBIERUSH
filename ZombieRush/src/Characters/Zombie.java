@@ -1,24 +1,31 @@
 package Characters;
 
-public class Zombie extends Character{
-	private int lvl;
+public class Zombie{
+
 	private int dmg;
 	private int hp;
-	private int x,y;
-	public Zombie(int lvl, int dmg, int hp, int x, int y)
+	private int x;
+	private int y;
+	public Zombie(int dmg, int hp, int x, int y)
 	{
-		super(hp,x,y);
-		this.lvl = lvl;
+		this.x = x;
+		this.y = x;
 		this.dmg = dmg;
+		this.hp = hp;
 	}
-
-	@Override
+	public int takeDamage(int num)
+	{
+		return hp - num;
+	}
 	public int gethp() {
 		// TODO Auto-generated method stub
 		return this.hp;
 	}
-	
-	@Override
+	public int getDmg()
+	{
+		return this.dmg;
+	}
+	//aa
 	public int[]getposition() {
 		// TODO Auto-generated method stub
 		int[]position = new int[2];
